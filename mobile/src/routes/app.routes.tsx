@@ -12,7 +12,7 @@ import SearchPool from '../screens/SearchPool';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-const AppRoutes = () => {
+const AppRoutes: React.IComponent = () => {
     const { colors, sizes } = useTheme();
 
     const size = sizes[6];

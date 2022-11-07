@@ -6,6 +6,8 @@ import * as WebBrowser from 'expo-web-browser';
 
 import { GOOGLE_CLIENT_ID } from '@env';
 
+import { api } from '../../services/api';
+
 WebBrowser.maybeCompleteAuthSession();
 
 export interface IUserProps {
@@ -24,10 +26,7 @@ export const AuthContext = React.createContext<IAuthContextDataProps>({} as IAut
 export const AuthContextProvider: React.IComponent = ({ children }) => {
     const [isUserLoading, setIsUserLoading] = React.useState<boolean>(false);
 
-    const [user, setUser] = React.useState<IUserProps>({
-        name: 'Henrique',
-        avatarUrl: 'https://github.com/henrique1204.png',
-    });
+    const [user, setUser] = React.useState<IUserProps>();
 
     const [_, response, promptAsync] = Google.useAuthRequest({
         clientId: GOOGLE_CLIENT_ID,
@@ -54,7 +53,27 @@ export const AuthContextProvider: React.IComponent = ({ children }) => {
     };
 
     const signInWithGoogle = async (access_token: string) => {
-        console.log('access_token', access_token);
+        try {
+            setIsUserLoading(true);
+    
+            const { data: { token } } = await api.post('/users', {
+                access_token,
+            });
+
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            const { data: { user } } = await api.get('/me');
+
+            setUser(user);
+        } catch(error) {
+            setUser(undefined);
+
+            console.error(error);
+
+            throw error;
+        } finally {
+            setIsUserLoading(false);
+        }
     };
 
     React.useEffect(() => {

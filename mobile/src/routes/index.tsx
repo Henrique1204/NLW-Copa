@@ -1,12 +1,18 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
+import useAuth from '../hooks/useAuth';
+
 import AppRoutes from './app.routes';
 
-const Routes = () => {
+import SignIn from '../screens/SignIn';
+
+const Routes: React.IComponent = () => {
+    const { user } = useAuth();
+
     return (
         <NavigationContainer>
-            <AppRoutes />
+            {!!user.name ? <AppRoutes /> : <SignIn /> }
         </NavigationContainer>
     );
 };
