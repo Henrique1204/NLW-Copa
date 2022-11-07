@@ -4,21 +4,25 @@ import { NativeBaseProvider, StatusBar } from 'native-base';
 
 import { THEME } from './src/styles/theme';
 
+import { AuthContextProvider } from './src/contexts/AuthContext';
+
 import Loading from './src/components/Loading';
 import SignIn from './src/screens/SignIn';
 
-const App: React.FC = () => {
+const App: React.IComponent = () => {
   const [fontsLodaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle='light-content'
-        backgroundColor="transparent"
-        translucent
-      />
+      <AuthContextProvider>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor="transparent"
+          translucent
+        />
 
-      {fontsLodaded ? <SignIn /> : <Loading />}
+        {fontsLodaded ? <SignIn /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   );
 };

@@ -7,7 +7,7 @@ interface IButtonProps extends IButtonNBProps {
     type?: 'PRIMARY' | 'SECONDARY';
 }
 
-const Button: React.FC<IButtonProps> = ({ title, type = "PRIMARY", ...props }) => {
+const Button: React.IComponent<IButtonProps> = ({ title, type = "PRIMARY", ...props }) => {
     return (
         <ButtonNB
             w="full"
