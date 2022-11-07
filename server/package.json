@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "prisma:migration": "npx prisma migrate dev",
-    "prisma:erd": "npx prisma generate"
+    "prisma:erd": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
+    "prisma:db": "npx prisma db seed"
   },
   "keywords": [],
   "author": "henrique1204 <pauloh16.pdr@gmail.com>",
   "license": "ISC",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@fastify/cors": "^8.1.1",
     "@prisma/client": "^4.5.0",
