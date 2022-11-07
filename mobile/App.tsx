@@ -8,10 +8,11 @@ import { THEME } from './src/styles/theme';
 
 import { AuthContextProvider } from './src/contexts/AuthContext';
 
-import Loading from './src/components/Loading';
-import Pools from './src/screens/Pools';
+import Routes from './src/routes';
 
-const App: React.IComponent = () => {
+import Loading from './src/components/Loading';
+
+const App: React.FC = () => {
   const [fontsLodaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
 
   return (
@@ -23,7 +24,7 @@ const App: React.IComponent = () => {
           translucent
         />
 
-        {fontsLodaded ? <Pools /> : <Loading />}
+        {fontsLodaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );
