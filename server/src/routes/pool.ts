@@ -6,7 +6,7 @@ import ShortUniqueId from "short-unique-id";
 import prisma from "../lib/prisma";
 
 const poolRoutes = async (fastify: FastifyInstance) => {
-    fastify.post('/pools', async ({ body }, reply) => {
+    fastify.post('/pools', async ({ body, jwtVerify, user }, reply) => {
         const createPoolBody = z.object({
             title: z.string(),
         });
@@ -14,15 +14,31 @@ const poolRoutes = async (fastify: FastifyInstance) => {
         const { title } = createPoolBody.parse(body);
 
         const generateCode = new ShortUniqueId({ length: 6 });
+        const code = String(generateCode()).toUpperCase();
 
-        const pool = await prisma.pool.create({
-            data: {
-                title,
-                code: String(generateCode()).toUpperCase(),
-            }
-        })
+        try {
+            await jwtVerify();
 
-        return reply.status(201).send(pool);
+            await prisma.pool.create({
+                data: {
+                    title,
+                    code,
+                    ownerId: user.sub,
+
+                    participants: {
+                        create: {
+                            userId: user.sub,
+                        }
+                    }
+                },
+            });
+        } catch (_) {
+            await prisma.pool.create({
+                data: { title, code },
+            });
+        } finally {
+            return reply.status(201).send({ code });
+        }
     });
 
     fastify.get('/pools/count', async () => {
