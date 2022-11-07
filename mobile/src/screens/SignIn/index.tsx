@@ -18,14 +18,14 @@ const SignIn: React.IComponent = () => {
 
         <Button
           type="SECONDARY"
-          title='Entrar com google'
+          title="Entrar com google"
           mt="12"
           leftIcon={<Icon as={Fontisto} name="google" color="white" size="md" />}
           onPress={signIn}
         />
 
         <Text color="white" textAlign="center" mt="4">
-          Não utilizamos nenhuma informação além {'\n'} do seu e-mail para criação de sua conta.
+          Não utilizamos nenhuma informação além {"\n"} do seu e-mail para criação de sua conta.
         </Text>
       </Center>
   );

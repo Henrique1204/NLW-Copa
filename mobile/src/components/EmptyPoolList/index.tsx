@@ -6,7 +6,7 @@ const EmptyPoolList: React.IComponent = () => {
   return (
     <Row flexWrap="wrap" justifyContent="center">
       <Text color="white" fontSize="sm" textAlign="center">
-        Você ainda não está participando de {'\n'} nenhum bolão, que tal
+        Você ainda não está participando de {"\n"} nenhum bolão, que tal
       </Text>
 
       <Pressable>

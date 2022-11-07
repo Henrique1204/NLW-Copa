@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { HStack } from 'native-base';
-import CountryFlag from "react-native-country-flag";
+import CountryFlag from 'react-native-country-flag';
 
 import Input from '../Input';
 

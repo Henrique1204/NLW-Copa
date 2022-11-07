@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import * as Google from 'expo-auth-session/providers/google';
 import * as AuthSession from 'expo-auth-session';

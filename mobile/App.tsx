@@ -9,7 +9,7 @@ import { THEME } from './src/styles/theme';
 import { AuthContextProvider } from './src/contexts/AuthContext';
 
 import Loading from './src/components/Loading';
-import SearchPool from './src/screens/SearchPool';
+import Pools from './src/screens/Pools';
 
 const App: React.IComponent = () => {
   const [fontsLodaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
@@ -18,12 +18,12 @@ const App: React.IComponent = () => {
     <NativeBaseProvider theme={THEME}>
       <AuthContextProvider>
         <StatusBar
-          barStyle='light-content'
+          barStyle="light-content"
           backgroundColor="transparent"
           translucent
         />
 
-        {fontsLodaded ? <SearchPool /> : <Loading />}
+        {fontsLodaded ? <Pools /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );

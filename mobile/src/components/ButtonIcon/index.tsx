@@ -1,9 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
-import { useTheme } from "native-base";
+import { useTheme } from 'native-base';
 
-import { IconProps } from "phosphor-react-native";
+import { IconProps } from 'phosphor-react-native';
 
 interface IButtonIconProps extends TouchableOpacityProps {
   icon: React.FC<IconProps>;
